@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cucian Mobil</title>
+</head>
+<body>
+
+    <h1>Selamat Datang di Cucian Mobil Kami</h1>
+
+    <form id="cucianForm">
+        <label for="merek">Merek Mobil:</label>
+        <input type="text" id="merek" name="merek" required><br>
+
+        <label for="plat">Plat Mobil:</label>
+        <input type="text" id="plat" name="plat" required><br>
+
+        <label for="kunjungan">Kunjungan ke Tempat Cucian:</label>
+        <input type="number" id="kunjungan" name="kunjungan" required><br>
+
+        <h2>Menu Cucian Mobil:</h2>
+
+        <input type="checkbox" id="cuci" name="cuci" value="50000">
+        <label for="cuci">Cuci Mobil - Rp 50.000</label><br>
+
+        <input type="checkbox" id="hidrolik" name="hidrolik" value="70000">
+        <label for="hidrolik">Cuci dengan Hidrolik - Rp 70.000</label><br>
+
+        <input type="checkbox" id="poles_dalam" name="poles_dalam" value="150000">
+        <label for="poles_dalam">Poles Bagian Dalam - Rp 150.000</label><br>
+
+        <input type="checkbox" id="poles_luar" name="poles_luar" value="150000">
+        <label for="poles_luar">Poles Bagian Luar - Rp 150.000</label><br>
+
+        <input type="checkbox" id="poles_mesin" name="poles_mesin" value="200000">
+        <label for="poles_mesin">Poles Bagian Mesin - Rp 200.000</label><br>
+
+        <input type="checkbox" id="poles_semua" name="poles_semua" value="400000">
+        <label for="poles_semua">Poles Semua Bagian - Rp 400.000</label><br>
+
+        <br>
+
+        <label for="diskon">Diskon 10% jika kunjungan lebih dari 10:</label>
+        <input type="checkbox" id="diskon" name="diskon" value="10">
+
+        <br><br>
+
+        <input type="button" value="Hitung Total Harga" onclick="hitungHarga()">
+    </form>
+
+    <h2>Hasil Pembayaran:</h2>
+
+    <p id="hasilMerekPlat"></p>
+    <p id="hasilTotalHarga"></p>
+    <p>Terima kasih telah mengunjungi cucian mobil kami. Semoga datang kembali!</p>
+    <p>Simpan riwayat pembelian untuk mendapatkan keuntungan lebih lanjut.</p>
+
+    <script>
+        function hitungHarga() {
+            // Logika perhitungan harga di sini
+            // Dapatkan nilai dari form menggunakan document.getElementById
+            // Hitung total harga, terapkan diskon jika kunjungan lebih dari 10
+            // Tampilkan hasil menggunakan document.getElementById
+
+            // Deklarasi variabel untuk menyimpan nilai dari form
+            var merek = document.getElementById("merek").value;
+            var plat = document.getElementById("plat").value;
+            var kunjungan = document.getElementById("kunjungan").value;
+            var cuci = document.getElementById("cuci");
+            var hidrolik = document.getElementById("hidrolik");
+            var poles_dalam = document.getElementById("poles_dalam");
+            var poles_luar = document.getElementById("poles_luar");
+            var poles_mesin = document.getElementById("poles_mesin");
+            var poles_semua = document.getElementById("poles_semua");
+            var diskon = document.getElementById("diskon");
+
+            // Deklarasi variabel untuk menyimpan total harga
+            var total = 0;
+
+            // Cek apakah menu cucian mobil dipilih atau tidak
+            // Jika ya, tambahkan harga ke total
+            if (cuci.checked) {
+                total += parseInt(cuci.value);
+            }
+            if (hidrolik.checked) {
+                total += parseInt(hidrolik.value);
+            }
+            if (poles_dalam.checked) {
+                total += parseInt(poles_dalam.value);
+            }
+            if (poles_luar.checked) {
+                total += parseInt(poles_luar.value);
+            }
+            if (poles_mesin.checked) {
+                total += parseInt(poles_mesin.value);
+            }
+            if (poles_semua.checked) {
+                total += parseInt(poles_semua.value);
+            }
+
+            // Cek apakah diskon berlaku atau tidak
+            // Jika ya, kurangi total dengan 10%
+            if (diskon.checked && kunjungan > 10) {
+                total -= total * 0.1;
+            }
+
+            // Tampilkan hasil merek, plat, dan total harga
+            document.getElementById("hasilMerekPlat").innerHTML = "Merek Mobil: " + merek + "<br>Plat Mobil: " + plat;
+            document.getElementById("hasilTotalHarga").innerHTML = "Total Harga: Rp " + total;
+        }
+    </script>
+
+</body>
+</html>
